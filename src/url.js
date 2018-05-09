@@ -1,4 +1,4 @@
-let host = 'http://111.230.29.91'
+let host = 'http://111.230.29.91:8002'
 module.exports = {
     url:{
         login:`${host}/login`,
@@ -14,6 +14,6 @@ module.exports = {
         topTech:`${host}/tech`,
         web:`${host}/web`,
         newApp:`${host}/newApp`,
-        medicine:`${host}/medicine`,
+        food:`${host}/food`,
     }
 }

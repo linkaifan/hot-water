@@ -76,6 +76,7 @@
           </li>
         </ul>
         <div class="sec-con">
+          <!-- 尖端科技 -->
           <div v-show="secIndex == 0">
             <div class="tech">
               <div class="tech-box" v-for="(item,index) in topTechs" :key="index">
@@ -87,6 +88,7 @@
               </div>
             </div>
           </div>
+          <!-- 网络研讨会 -->
           <div v-show="secIndex == 1">
             <div class="web">
               <div class="web-left">
@@ -108,10 +110,33 @@
               </div>
             </div>
           </div>
+          <!-- 食药资讯 -->
           <div v-show="secIndex == 2">
-
+            <div class="food">
+              <div class="food-box" v-for="(item,index) in foods" :key="index">
+                <img :src="item.image" class="food-img">
+                <div class="food-t">
+                  <p class="food-title">{{item.title}}</p>
+                  <p class="food-text">{{item.subtitle}}</p>
+                  <a href="#" class="sec-a tech-a">了解更多</a>
+                </div>
+              </div>
+            </div>
           </div>
-          <div v-show="secIndex == 3" class=""></div>
+          <!-- 最新应用 排版跟食药一样-->
+          <div v-show="secIndex == 3">
+            <div class="newsApp food">
+              <div class="food-box" v-for="(item,index) in newApps" :key="index">
+                <img :src="item.image" class="food-img">
+                <div class="food-t">
+                  <p class="food-title">{{item.title}}</p>
+                  <p class="food-text">{{item.content}}</p>
+                  <a href="#" class="sec-a tech-a">了解更多</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- 联系我们 -->
           <div v-show="secIndex == 4" class="sec-consult">
             <div class="consult">
               <p>各种咨询：未登载商品、询价、订购、售后、技术咨询、客户登记</p>
@@ -180,13 +205,33 @@ export default {
       console.log(error);
       alert("网络错误，不能获取网络研讨会数据");
       });
+    //获取食药资讯
+    axios
+      .get(url.food, {params: { is_index: 1 } })
+      .then(response => {               
+        this.foods = response.data.data;             
+      })
+      .catch(error => {
+      console.log(error);
+      alert("网络错误，不能获取食药咨询数据");
+      }); 
+      //最新应用
+      axios
+        .get(url.newApp, {params: { is_index: 1 } })
+        .then(response => {               
+          this.newApps = response.data.data;             
+        })
+        .catch(error => {
+        console.log(error);
+        alert("网络错误，不能获取最新应用数据");
+        });
   },
   data() {
     return {
       // 控制新品推荐显示的item。初始化为0
       curIndex: 0,
-      // 控制tab板块显示的板块，初始化为0->尖端科技
-      secIndex:0,
+      // 控制tab板块显示的板块，初始化为4->联系我们
+      secIndex:4,
       newItems: [
         {
           cls: "容器",
@@ -230,6 +275,10 @@ export default {
       topTechs:[],
       //网络研讨会
       webs:[],
+      //食药咨询
+      foods:[],
+      //最新应用
+      newApps:[]
     };
   },
   filters: {
@@ -262,7 +311,7 @@ export default {
     },
     changeSecIndex(index) {
       this.secIndex = index;     
-    }
+    },
   }
 };
 </script>
@@ -279,12 +328,13 @@ export default {
   margin: 5px;
 }
 .con-middle {
-  width: 700px;
+  min-width: 700px;
   margin-left: 232px;
   border: 1px #d5d5d5 solid;
+  flex-grow: 1;
 }
 .con-right {
-  flex-grow: 1;
+  flex-grow: 2;
   min-width: 240px; 
   margin-left: 10px;
   padding: 5px 10px;
@@ -499,7 +549,7 @@ export default {
   position: absolute;
   bottom: 0;left: 0;
 }
-.tech-title,.web-title{
+.tech-title,.web-title,.food-title{
   font-weight: 600;
   font-size: 16px;
   text-align: left;
@@ -536,10 +586,27 @@ export default {
 .web-right{
   margin-left: 30px;
 }
-.web-img{
+.web-img,.food-img{
   width: 140px;
   height: 110px;
 }
 /* 食药咨询  */
+.food{
+  padding: 30px 50px;
+  text-align: left;
+}
+.food-box{
+  display: flex;
+  text-align: left;
+  margin-bottom: 30px;
+}
+.food-t{
+  margin-left: 30px;
+  position: relative;
+}
+.food-text{
+  margin: 5px 0;
+}
+
 
 </style>

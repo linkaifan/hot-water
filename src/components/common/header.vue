@@ -8,7 +8,7 @@
 					<span class="line">|</span>
 				</li>
 				<li>
-					<img class="icon" src="../../assets/imgs/phone.png" >
+					<img class="icon" src="../../assets/imgs/phone2.png" >
 					020-3104-1987
 					<span class="line">|</span>
 				</li>
