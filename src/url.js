@@ -6,7 +6,7 @@ module.exports = {
         register:`${host}/createUser`,
         searchByName:`${host}/searchByName`,
         getSingleInfo:`${host}//getSingleInfo`,
-        returnSecondOrThirdType:`${host}/returnSecondOrThirdType`,
+        classify:`${host}/classify`,
         notices:`${host}/notices`,
         apply:`${host}/apply`,
         catalogApply:`${host}/catalogApply`,
@@ -15,12 +15,6 @@ module.exports = {
         web:`${host}/web`,
         newApp:`${host}/newApp`,
         food:`${host}/food`,
-        oneTwoSpec:`${host}/oneTwoSpec`,
-        threeSpec:`${host}/threeSpec`,
-        fourSpec:`${host}/fourSpec`,
-        fiveSpec:`${host}/fiveSpec`,
-        sixSpec:`${host}/sixSpec`,
-        sevenSpec:`${host}/sevenSpec`,
         goodTable:`${host}/goodTable`
     }
 }

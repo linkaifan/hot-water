@@ -46,7 +46,7 @@
     </nav>
 		<div class="h30"></div>
 		<div class="tabBox">
-			<div class="logoBox">
+			<div class="logoBox" @click="toPage('/')">
 				<img src="../../assets/imgs/LOGO.png" >
 			</div>
 			<div class="codeBox">

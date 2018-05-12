@@ -1,7 +1,7 @@
 <template>
     <div id="detail">
       <myhead></myhead>
-      <div class="itemBox">
+      <div class="itemBox" id="pdfDom">
 				<div class="img-text">
 					<div class="left">
 						<img :src="curImg"  class="big-img">
@@ -32,7 +32,7 @@
 							<li v-show="item.size5">● {{item.size5}}</li>
 							<li v-show="item.size6">● {{item.size6}}</li>
 						</ul>
-						<button class="pdf-btn">
+						<button class="pdf-btn" @click="getPdf(item.name)">
 							导出PDF
 						</button>
 						<button class="skill-btn" @click="toSkill">

@@ -33,6 +33,33 @@
 							</li>
 						</ul>
 					</div>
+					<div class="brand shape" v-show="shapes.length">
+						<div class="nav-cls">形状</div>
+						<ul class="nav-ul">
+							<li class="nav-name" v-for="(shape,index) in shapes" :key="index"
+							@click="byNameAndBrandOrType('','',shape)">
+								{{shape}}
+							</li>
+						</ul>
+					</div>
+					<div class="brand capacity" v-show="capacitys.length">
+						<div class="nav-cls">容量</div>
+						<ul class="nav-ul">
+							<li class="nav-name" v-for="(capacity,index) in capacitys" :key="index"
+							@click="byNameAndBrandOrType('','','',capacity)">
+								{{capacity}}
+							</li>
+						</ul>
+					</div>
+					<div class="brand category" v-show="categorys.length">
+						<div class="nav-cls">容量</div>
+						<ul class="nav-ul">
+							<li class="nav-name" v-for="(category,index) in categorys" :key="index"
+							@click="byNameAndBrandOrType('','','','',category)">
+								{{category}}
+							</li>
+						</ul>
+					</div>
 				</div>
 				<div class="items-box">
 					<div class="item" v-for="(item,index) in items" :key="index"
@@ -86,6 +113,9 @@ export default {
 			//nav上的品牌和分类
 			brands:[],
 			types:[],
+			capacitys:[],
+			categorys:[],
+			shape:[],
     };
 	},
 	watch: {
@@ -122,18 +152,26 @@ export default {
 		toPage(n){
 			if (this.NameOrType == 'name') {
 				this.$router.push({ path: 'search',query:{
-				name:this.byName.name,
-				page:n,
-				brand:this.byName.brand,
-				type:this.byName.type
+					name:this.byName.name,
+					page:n,
+					brand:this.byName.brand,
+					type:this.byName.type
 				}}) 	
 			}else if (this.NameOrType == 'type') {
-				
+				this.$router.push({ path: 'search',query:{
+					flag:this.byType.flag,
+					page:n,
+					shape:this.byType.shape,
+					brand:this.byType.brand,
+					capacity:this.byType.capacity,
+					category:this.byType.category,
+					third_type:this.byType.third_type
+				}}) 				
 			}else{
 				alert('错误操作')
 			}		
 		},
-		byNameAndBrandOrType(brand,type){
+		byNameAndBrandOrType(brand,type,shape,capacity,category){
 			if (this.NameOrType == 'name') {
 				this.$router.push({ path: 'search',query:{
 					name:this.byName.name,
@@ -142,7 +180,15 @@ export default {
 					type,
 				}}) 				
 			}else if (this.NameOrType == 'type') {
-				
+				this.$router.push({ path: 'search',query:{
+					flag:this.byType.flag,
+					page:1,
+					shape:shape,
+					brand,
+					capacity:capacity,
+					category:category,
+					third_type:type
+				}}) 
 			}else{
 				alert('错误操作')
 			}
@@ -151,16 +197,20 @@ export default {
 		searchByType(){
 			let query = this.$route.query
 			this.byType = query
-			this.curPage = this.byType.page	
-			// let typeUrl;			
+			this.curPage = this.byType.page		
 			axios
-        .get(url.returnSecondOrThirdType, { params: query })
+        .get(url.classify, { params: query })
         .then(response => {					
-					let data = response.data.data;
+					let data = response.data.data;					
 					this.items = data.data	
-					this.maxPage = Math.floor(data.total)
+					this.maxPage = data.total					
 					this.loading = false
-					console.log(data);
+
+					this.types = data.third_type
+					this.brands = data.brand
+					this.categorys = data.category
+					this.shapes = data.shape
+					this.capacitys = data.capacity
         })
         .catch(error => {
 					this.items = []
@@ -264,7 +314,7 @@ export default {
 .nav-cls{
 	color: #222;
 	font-size: 16px;
-	width: 120px;
+	min-width: 120px;
 	background-color: rgb(241, 241, 241);
 	border-left: 1px #ddd solid;
 	display: flex;
