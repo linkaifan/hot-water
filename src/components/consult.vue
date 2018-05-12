@@ -44,7 +44,7 @@ export default {
   text-align: left;
   font-size: 14px;
   padding: 0 10%;
-  margin: 10px 0;
+  margin: 20px 0;
 }
 .bar>span{
   margin: 0 10px;

@@ -7,17 +7,17 @@
           <ul class="ul-btn">
             <li class="con-btn1" @click="toPage('apply')">
               <img src="../assets/imgs/coo.png" class="left-icon">
-              <div href="#">品牌/合作</div>
+              <div>品牌/合作</div>
               <img src="../assets/imgs/right.png" class="right-icon">
             </li>
             <li class="con-btn1" @click="toPage('skill')">
               <img src="../assets/imgs/goods.png" class="left-icon">
-              <div href="#">商品/技术</div>
+              <div>商品/技术</div>
               <img src="../assets/imgs/right.png" class="right-icon">
             </li>
             <li class="con-btn2" @click="toPage('apply')">
               <img src="../assets/imgs/client.png" class="left-icon">
-              <div href="#">客户登记</div>
+              <div>客户登记</div>
               <div class="free">免费</div>
             </li>
             <li class="con-btn2" @click="toPage('consult')">
@@ -541,7 +541,7 @@ export default {
 }
 .tech-box{
   text-align: left;
-  width: 45%;
+  width: 43%;
   display: flex;
   margin: 0 50px 50px 0;
 }

@@ -6,6 +6,8 @@ import Register from "@/components/register";
 import Consult from "@/components/consult";
 import Apply from "@/components/apply";
 import Skill from "@/components/skill";
+import Search from "@/components/search";
+import Detail from "@/components/detail";
 
 Vue.use(Router)
 
@@ -40,6 +42,16 @@ export default new Router({
       path: '/skill',
       name: 'Skill',
       component: Skill
+    },
+    {
+      path: '/search',
+      name: 'Search',
+      component: Search
+    },
+    {
+      path: '/detail',
+      name: 'Detail',
+      component: Detail
     },
 
   ]

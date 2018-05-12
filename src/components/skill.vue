@@ -10,7 +10,8 @@
 			<p class="title">技术咨询</p>
 			<div class="content">
 				<div class="h">
-					请填写以下申请信息，填写完成后按下"登记申请"按钮提交信息。
+					首先感谢您对我司的依赖与支持，请留下您的联系方式，
+					以便我们及时对应回复，非常感谢。
 				</div>
 				<form action="post" name="bForm">
 					<div class="inputBox">
@@ -67,115 +68,122 @@ export default {
   data() {
     return {
       updata: {
-          company_name:'',
-          contact_name:'',
-          phone:'',
-          email:'',
-          product_name:'',
-          content:'',
-          spec_email:''
+        company_name: "",
+        contact_name: "",
+        phone: "",
+        email: "",
+        product_name: "",
+        content: "",
+        spec_email: ""
       }
     };
   },
   methods: {
-      skill() {
-		let self = this;
-		if (!this.updata.company_name || !this.updata.contact_name || !this.updata.phone 
-		|| !this.updata.email || !this.updata.product_name || !this.updata.content
-		|| !this.updata.spec_email ) {
-			alert("请完善信息")
-		}
-		else{
-			let formData = new FormData();
-			formData.append('company_name', this.updata.company_name);  
-			formData.append('contact_name', this.updata.contact_name);  
-			formData.append('email', this.updata.email); 
-			formData.append('phone', this.updata.phone); 
-			formData.append('product_name', this.updata.product_name); 
-			formData.append('spec_email', this.updata.spec_email); 
-			formData.append('content', this.updata.content); 
-			axios
-				.post(
-				url.skill,
-				formData,
-				{
-					headers: {  
-						'Content-Type': 'multipart/form-data'  
-					}  
-				}
-				)
-				.then(function(res) {
-					// alert("申请成功，请耐心等待回复")
-					console.log(res);
-					// self.$router.push('/')
-				})
-				.catch(function(error) {
-				    console.log(error);
-				});
-		}
+    skill() {
+      let self = this;
+      if (
+        !this.updata.company_name ||
+        !this.updata.contact_name ||
+        !this.updata.phone ||
+        !this.updata.email ||
+        !this.updata.product_name ||
+        !this.updata.content ||
+        !this.updata.spec_email
+      ) {
+        alert("请完善信息");
+      } else {
+        let formData = new FormData();
+        formData.append("company_name", this.updata.company_name);
+        formData.append("contact_name", this.updata.contact_name);
+        formData.append("email", this.updata.email);
+        formData.append("phone", this.updata.phone);
+        formData.append("product_name", this.updata.product_name);
+        formData.append("spec_email", this.updata.spec_email);
+        formData.append("content", this.updata.content);
+        axios
+          .post(url.skill, formData, {
+            headers: {
+              "Content-Type": "multipart/form-data"
+            }
+          })
+          .then(function(res) {
+            // alert("申请成功，请耐心等待回复")
+            console.log(res);
+            self.$router.push("/");
+          })
+          .catch(function(error) {
+            console.log(error);
+          });
       }
+    }
+  },
+  created() {
+    if (this.$route.query.name) {
+      this.updata.product_name = this.$route.query.name
+    }
   }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.bar{
+.bar {
   height: 30px;
   line-height: 30px;
   text-align: left;
   font-size: 14px;
   padding: 0 10%;
-  margin: 10px 0;
+  margin: 20px 0;
 }
-.bar>span{
+.bar > span {
   margin: 0 10px;
 }
-.box{
-	padding: 0 10%;
+.box {
+  padding: 0 10%;
+  margin-bottom: 50px;
 }
-.title{
-	height: 40px;
-	color: #fff;
-	line-height: 40px;
-	background-color: #E70012;
+.title {
+  height: 40px;
+  color: #fff;
+  line-height: 40px;
+  background-color: #e70012;
 }
-.content{
-	box-sizing: border-box;
-	background-color: #EEEEEE;
-	height: 600px;
-	padding: 30px 50px;
+.content {
+  box-sizing: border-box;
+  background-color: #eeeeee;
+  height: 600px;
+  padding: 30px 50px;
 }
-.h{
-	border-bottom: 1px #ccc dotted;
-	line-height: 40px;
-	height: 40px;
-	margin-bottom: 50px;
-	text-align: left;
-	font-size: 14px;
+.h {
+  border-bottom: 1px #ccc dotted;
+  line-height: 40px;
+  height: 40px;
+  margin-bottom: 50px;
+  text-align: left;
+  font-size: 14px;
 }
-.inputBox>p{
-	width: 200px;
-	text-align: left;
+.inputBox > p {
+  width: 200px;
+  text-align: left;
 }
-.inputBox>input{
-	width: 420px;
-	height: 32px;
-	box-sizing: border-box;
+.inputBox > input {
+  width: 420px;
+  height: 32px;
+  box-sizing: border-box;
 }
-.inputBox{
-	box-sizing: border-box;
-	display: flex;
-	margin: 20px 0; 
-	align-items: center;
-	padding-left: 100px;
+.inputBox {
+  box-sizing: border-box;
+  display: flex;
+  margin: 20px 0;
+  align-items: center;
+  padding-left: 100px;
 }
-.btn{
-	margin: 50px auto;
-	width: 156px;
-	height: 40px;
-	line-height: 40px;
-	color: #fff;
-	background-color: #CD000F;
+.btn {
+  margin: 50px auto;
+  width: 156px;
+  height: 40px;
+  line-height: 40px;
+  color: #fff;
+  background-color: #cd000f;
 }
 </style>

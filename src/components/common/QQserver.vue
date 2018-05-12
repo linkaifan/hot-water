@@ -1,10 +1,15 @@
 <template>
 
-        <a class="box" 
+        <a class="box"  target="_blank" 
         href="http://wpa.qq.com/msgrd?v=3&uin=3447430671&site=qq&menu=yes">
         <img src="../../assets/imgs/qq.png" class="qq">
-            在 线 客 服
+            <p>在</p>
+            <p>线</p>
+            <p>客</p>
+            <p>服</p>
         </a>
+      
+        
 </template>
 
 <script>
