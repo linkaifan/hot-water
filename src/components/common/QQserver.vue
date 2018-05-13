@@ -1,15 +1,12 @@
 <template>
-
-        <a class="box"  target="_blank" 
-        href="http://wpa.qq.com/msgrd?v=3&uin=3447430671&site=qq&menu=yes">
-        <img src="../../assets/imgs/qq.png" class="qq">
-            <p>在</p>
-            <p>线</p>
-            <p>客</p>
-            <p>服</p>
-        </a>
-      
-        
+  <a class="box"  target="_blank" 
+  href="http://wpa.qq.com/msgrd?v=3&uin=3447430671&site=qq&menu=yes">
+  <img src="../../assets/imgs/qq.png" class="qq">
+      <p>在</p>
+      <p>线</p>
+      <p>客</p>
+      <p>服</p>
+  </a>        
 </template>
 
 <script>

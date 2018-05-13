@@ -6,8 +6,8 @@
       <span>></span>
       <span v-show="NameOrType == 'name'">搜索关键词 <span class="search-content">
 				{{byName.name}}</span> 的结果：</span>
-      <span v-show="NameOrType == 'type'">搜索分类 <span class="search-content">
-				{{byType.third_type||byType.second_type}}</span> 的结果：</span>
+      <span v-show="NameOrType == 'type'">搜索 <span class="search-content">
+				{{byType.third_type||byType.second_type}}</span> 结果：</span>
     </div>
 		<div class="result" v-if="!loading">
 			<div class="null" v-show="!items.length">
@@ -33,7 +33,7 @@
 							</li>
 						</ul>
 					</div>
-					<div class="brand shape" v-show="shapes.length">
+					<div class="brand shape" v-show="NameOrType == 'type' && shapes.length">
 						<div class="nav-cls">形状</div>
 						<ul class="nav-ul">
 							<li class="nav-name" v-for="(shape,index) in shapes" :key="index"
@@ -42,7 +42,7 @@
 							</li>
 						</ul>
 					</div>
-					<div class="brand capacity" v-show="capacitys.length">
+					<div class="brand capacity" v-show="NameOrType == 'type' && capacitys.length">
 						<div class="nav-cls">容量</div>
 						<ul class="nav-ul">
 							<li class="nav-name" v-for="(capacity,index) in capacitys" :key="index"
@@ -51,8 +51,8 @@
 							</li>
 						</ul>
 					</div>
-					<div class="brand category" v-show="categorys.length">
-						<div class="nav-cls">容量</div>
+					<div class="brand category" v-show="NameOrType == 'type' && categorys.length">
+						<div class="nav-cls">类别</div>
 						<ul class="nav-ul">
 							<li class="nav-name" v-for="(category,index) in categorys" :key="index"
 							@click="byNameAndBrandOrType('','','','',category)">
@@ -66,7 +66,7 @@
 					@click="detail(item.first_type,item.id)">
 						<img :src="isHaveImg(item.img)" class="item-img">
 						<p class="item-name">{{item.name}}</p>
-						<p class="price">￥ <span>{{item.price || 66}} </span> 起</p>
+						<p class="price">￥ <span>{{item.price || 6}} </span> 起</p>
 					</div>
 				</div>
 				<div class="btn-box">
@@ -115,7 +115,7 @@ export default {
 			types:[],
 			capacitys:[],
 			categorys:[],
-			shape:[],
+			shapes:[],
     };
 	},
 	watch: {
@@ -147,7 +147,11 @@ export default {
           console.log(error);
           alert("网络错误，不能访问");
 				});
+			//恢复初始化
 			this.byType = {}
+			this.capacitys = []
+			this.categorys = []
+			this.shape = []
 		},
 		toPage(n){
 			if (this.NameOrType == 'name') {
@@ -165,7 +169,8 @@ export default {
 					brand:this.byType.brand,
 					capacity:this.byType.capacity,
 					category:this.byType.category,
-					third_type:this.byType.third_type
+					third_type:this.byType.third_type,
+					second_type:this.byType.second_type 
 				}}) 				
 			}else{
 				alert('错误操作')
@@ -176,18 +181,19 @@ export default {
 				this.$router.push({ path: 'search',query:{
 					name:this.byName.name,
 					page:1,
-					brand,
-					type,
+					brand:brand || this.byName.brand,
+					type:type || this.byName.type,
 				}}) 				
 			}else if (this.NameOrType == 'type') {
 				this.$router.push({ path: 'search',query:{
 					flag:this.byType.flag,
 					page:1,
-					shape:shape,
-					brand,
-					capacity:capacity,
-					category:category,
-					third_type:type
+					shape:shape || this.byType.shape,
+					brand:brand || this.byType.brand,
+					capacity:capacity || this.byType.capacity,
+					category:category || this.byType.category,
+					third_type:type || this.byType.third_type,
+					second_type:this.byType.second_type
 				}}) 
 			}else{
 				alert('错误操作')
@@ -197,16 +203,19 @@ export default {
 		searchByType(){
 			let query = this.$route.query
 			this.byType = query
-			this.curPage = this.byType.page		
+			this.curPage = this.byType.page	
+				
 			axios
         .get(url.classify, { params: query })
         .then(response => {					
-					let data = response.data.data;					
+					let data = response.data.data;	
+									
 					this.items = data.data	
 					this.maxPage = data.total					
 					this.loading = false
+					
 
-					this.types = data.third_type
+					this.types = data.third_type 
 					this.brands = data.brand
 					this.categorys = data.category
 					this.shapes = data.shape
@@ -217,6 +226,7 @@ export default {
           console.log(error);
           alert("网络错误，不能访问");
 				});
+				//恢复初始化
 				this.byName = {}
 		},
 		init(){
@@ -325,10 +335,13 @@ export default {
 	display: flex;
 	flex-wrap: wrap;
 	font-size: 14px;
-	padding: 15px 20px 20px 20px;
+	padding: 10px 20px;
+	align-items: center;
 }
 .nav-ul>li{
-	margin: 0 15px;
+	margin: 5px 15px;
+	height: 20px;
+	line-height: 20px;
 }
 .nav-name{
 	margin-top: 5px;
