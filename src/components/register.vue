@@ -56,16 +56,30 @@ export default {
   },
   methods: {
     register() {
-      let upData = qs.stringify(this.user);
-      console.log(upData);
-      axios
-        .post(url.register, upData)
-        .then(function(response) {
-          console.log(response);
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
+      let self = this
+      if (
+        !this.user.name ||
+        !this.user.pw ||
+        !this.user.cname ||
+        !this.user.email ||
+        !this.user.cphone
+      ) {
+        alert("请完善信息")
+      }else{
+        let upData = qs.stringify(this.user);
+        // console.log(upData);
+        axios
+          .post(url.register, upData)
+          .then(function(response) {
+            // console.log(response);
+            alert("注册成功")
+            self.$router.push("/login");
+          })
+          .catch(function(error) {
+            console.log(error);
+          });
+      }
+
     }
   }
 };

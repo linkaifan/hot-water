@@ -58,7 +58,7 @@
           </ul>
           <ul class="items">
             <li v-for="(item,index) in newItems[curIndex].items"
-            :key="index" class="itemBox">
+            :key="index" class="itemBox" @click="detail(curIndex+1,item.id)">
                 <img :src="item.img[0]" class="itemImg disb">
                 <p class="name">
                   {{item.name}}
@@ -118,7 +118,7 @@
                 <div class="food-t">
                   <p class="food-title">{{item.title}}</p>
                   <p class="food-text">{{item.subtitle}}</p>
-                  <a href="#" class="sec-a tech-a">了解更多</a>
+                  <!-- <a href="#" class="sec-a tech-a">了解更多</a> -->
                 </div>
               </div>
             </div>
@@ -131,7 +131,7 @@
                 <div class="food-t">
                   <p class="food-title">{{item.title}}</p>
                   <p class="food-text">{{item.content}}</p>
-                  <a href="#" class="sec-a tech-a">了解更多</a>
+                  <!-- <a href="#" class="sec-a tech-a">了解更多</a> -->
                 </div>
               </div>
             </div>
@@ -168,7 +168,7 @@ export default {
     axios
       .get(url.newGoods, { params: { type: 1 } })
       .then(response => {       
-        let data1 = response.data.data;
+        let data1 = response.data.data;       
         this.newItems[0].items = data1;      
       })
       .catch(error => {
@@ -209,7 +209,8 @@ export default {
     axios
       .get(url.food, {params: { is_index: 1 } })
       .then(response => {               
-        this.foods = response.data.data;             
+        this.foods = response.data.data;     
+                
       })
       .catch(error => {
       console.log(error);
@@ -219,7 +220,7 @@ export default {
       axios
         .get(url.newApp, {params: { is_index: 1 } })
         .then(response => {               
-          this.newApps = response.data.data;             
+          this.newApps = response.data.data;            
         })
         .catch(error => {
         console.log(error);
@@ -312,6 +313,12 @@ export default {
     changeSecIndex(index) {
       this.secIndex = index;     
     },
+		detail(first_type,id){
+			this.$router.push({ path: 'detail',query:{
+				flag:first_type,
+				id
+			}}) 			
+		}
   }
 };
 </script>
