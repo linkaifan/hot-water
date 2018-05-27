@@ -1,24 +1,103 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>热泉</title>
-    <link rel="shortcut icon" href="static/favicon.ico" >
-    <style>
-       body,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select{margin:0;padding:0} 
-    body{font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;} 
-    a{color:#2d374b;text-decoration:none} 
-    a:hover{color:#cd0200;text-decoration:underline} 
-    em{font-style:normal} 
-    li{list-style:none} 
-    img{border:0;vertical-align:middle} 
-    table{border-collapse:collapse;border-spacing:0} 
-    p{word-wrap:break-word}
-    </style>
-  </head>
-  <body>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="renderer" content="webkit"/>
+  <title>热泉港</title>
+  <link rel="shortcut icon" href="static/favicon.ico">
+  <style>
+    body,
+    ol,
+    ul,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    th,
+    td,
+    dl,
+    dd,
+    form,
+    fieldset,
+    legend,
+    input,
+    textarea,
+    select {
+      margin: 0;
+      padding: 0
+    }
+
+    body {
+      font: 16px"宋体", "Arial Narrow", HELVETICA;
+      background: #fff;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    a {
+      color: #2d374b;
+      text-decoration: none
+    }
+
+    a:hover {
+      color: #cd0200;
+      text-decoration: underline
+    }
+
+    em {
+      font-style: normal
+    }
+
+    li {
+      list-style: none
+    }
+
+    img {
+      border: 0;
+      vertical-align: middle
+    }
+
+    table {
+      border-collapse: collapse;
+      border-spacing: 0
+    }
+
+    p {
+      word-wrap: break-word
+    }
+
+  </style>
+  <script>
+    //判断浏览器版本，提示更新
+    (function (window) {
+      var theUA = window.navigator.userAgent.toLowerCase();
+      if ((theUA.match(/msie\s\d+/) && theUA.match(/msie\s\d+/)[0]) || (theUA.match(/trident\s?\d+/) && theUA.match(
+          /trident\s?\d+/)[0])) {
+        var ieVersion = theUA.match(/msie\s\d+/)[0].match(/\d+/)[0] || theUA.match(/trident\s?\d+/)[0];
+        if (ieVersion <= 9) {
+          var str = "IE8（及以下）由于存在安全风险，已被本站禁止，请升级到IE11或使用Chrome浏览器。:(";
+          var str2 =
+            "推荐使用:<a href='https://www.baidu.com/s?ie=UTF-8&wd=%E8%B0%B7%E6%AD%8C%E6%B5%8F%E8%A7%88%E5%99%A8' target='_blank'>谷歌</a>," +
+            "<a href='https://www.baidu.com/s?ie=UTF-8&wd=%E7%81%AB%E7%8B%90%E6%B5%8F%E8%A7%88%E5%99%A8' target='_blank'>火狐</a>," +
+            "<a href='https://www.baidu.com/s?ie=UTF-8&wd=%E7%8C%8E%E8%B1%B9%E6%B5%8F%E8%A7%88%E5%99%A8' target='_blank'>猎豹</a>";
+          document.writeln(
+            "<pre style='text-align:center;color:#fff;background-color:#0cc; height:100%;border:0;position:fixed;top:0;left:0;width:100%;z-index:1234'>" +
+            "<h2 style='padding-top:200px;margin:0'><strong>" + str + "<br/></strong></h2><p>"+str2); 
+          document.execCommand("Stop");
+        };
+      }
+    })(window);
+
+  </script>
+</head>
+
+<body>
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+</body>
+
 </html>

@@ -40,3 +40,11 @@
 
 ## 当post数据中包含文件
 利用原生对象new FormData();然后将各个key值append进去。理论上也是可以解决上面问题的。
+
+## ie下sessionStorage
+ie下本地打开文件时，会找不到sessionStorage对象，从而报错。需要在服务器上【本地服务器也行】下打开。
+
+## 巨坑兼容
+使用了flex，放弃了ie9及以下。在Index.html上直接判断。
+
+双核浏览器下直接切换成webkit【谷歌内核】。

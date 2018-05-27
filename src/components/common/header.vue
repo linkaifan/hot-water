@@ -4,17 +4,17 @@
       <ul class="left-ul">
 				<li>
 					<img class="icon" src="../../assets/imgs/phone.png" >
-					800-988-0270
+					<router-link to="/jobs">招贤纳士</router-link>	
 					<span class="line">|</span>
 				</li>
 				<li>
 					<img class="icon" src="../../assets/imgs/phone2.png" >
-					020-3104-1987
+					020-310-41987
 					<span class="line">|</span>
 				</li>
 				<li>
 					<img class="icon" src="../../assets/imgs/email.png" >
-					hostpring@163.com
+					information@yechine.com
 					<span class="line">|</span>
 				</li>
 			</ul>
@@ -28,19 +28,20 @@
         <span @click="cancelUser">[注销]</span>
 			</div>
 			<ul class="right-ul">
-				<li>
-					账号中心
+				<li id="user" v-show="user">
+          <img src="../../assets/imgs/me.png" class="icon">
+					<router-link to="/me">基础信息</router-link>						
 					<!-- <img src="../../assets/imgs/tri.png" class="icon"> -->
 					<span class="line">|</span>
 				</li>
 				<li>
 					<img src="../../assets/imgs/sm-logo.png" class="icon">
-          <router-link to="/">hot-water官网</router-link>						
+          <router-link to="/">Yechine官网</router-link>						
 					<span class="line">|</span>		
 				</li>
 				<li>
 					<img src="../../assets/imgs/flag.png" class="icon">
-					关于我们					
+					<router-link to="/about">【关于我们】</router-link>			
 				</li>
 			</ul>
     </nav>
@@ -68,9 +69,11 @@
 						<ul class="second-menu">
 							<li v-for="(item2,index2) in desItem" :key="index2" class="second-content">
                 <span class="second-t" @click="searchByType(desIndex+1,item2)">{{item2}}</span>
+                <span class="line2">|</span>	
                 <span class="third-t" @click="searchByType(desIndex+1,item2,item3)"
                 v-for="(item3,index3) in  thirdItem[index2]" :key="index3">
                   {{item3}}
+                  <span class="line2" v-show="index3 != (thirdItem[index2].length-1)">|</span>
                 </span> 
 							</li>
 						</ul>
@@ -132,7 +135,7 @@ export default {
         name: "",
         all:""
       },
-      hots: ["灭菌器", "离心管", "手套", "ph", "活性口罩"],
+      hots: ["灭菌器", "离心管", "手套", "pH计", "活性口罩"],
       //产品分类，cls一级菜单，des二级菜单，third三级菜单
       items: [
         {
@@ -227,13 +230,13 @@ export default {
             ["霉菌/生化培养箱 ","低温培养箱（保存箱） ","电热恒温培养箱","隔水恒温培养箱 ",
             "微生物培养箱（自然对流）"],
             ["小型CO2培养箱","CO2培养箱","普及型CO2培养箱","CO2培养箱（触摸屏）"],
-            ["光照培养箱（可编程）,","人工气候培养箱（可编程）,","光照培养箱（强光）,",
+            ["光照培养箱（可编程）","人工气候培养箱（可编程）","光照培养箱（强光）",
             "人工气候培养箱（强光）"],
             ["简易型","高档型（触摸屏）","专业型"],
             ["回旋/加热回旋振荡器","恒温培养摇床","恒温振荡器（液晶屏）",
             "大型恒温振荡器（液晶屏）","落地振荡器（液晶屏）","摇瓶机"],
             ["精密型鼓风干燥箱,","高温鼓风/自然对流干燥箱,","鼓风干燥箱,","干培两用箱"],
-            [],
+            ["台式真空干燥箱","立式真空干燥箱","真空度数显并控制真空干燥箱","多箱真空干燥箱"],
             ["加热循环槽","制冷和加热循环槽","电热恒温水槽","恒温/低温振荡水槽/油浴锅",
             "水浴锅/精密恒温水槽","恒温水槽水浴锅"],
             ["药品稳定性试验箱","综合药品稳定性试验箱","大型综合药品稳定性试验箱","多箱综合药品稳定性试验箱",
@@ -241,7 +244,7 @@ export default {
             ["老化试验箱","高低温（交变）试验箱","高低温（交变）湿热试验箱","氙灯耐气候试验箱","紫外光耐气候试验箱","盐雾腐蚀试验箱"],
             ["电动移液器","手动移液器","大容量电动移液器","大容量手动移液器和助吸器","连续分配器","电子滴定器","电子瓶口分液器"],
             ["旋转蒸发仪","加热型磁力搅拌器","加热板","磁力搅拌器","顶置式电子搅拌器","混匀仪","96孔板混匀仪","旋转混匀仪","滚轴混匀仪","摇床","均质分散机"],
-            ["掌上离心机","高速微量离心机","低俗离心机"],
+            ["掌上离心机","高速微量离心机","低速离心机"],
             ["纯水/超纯水系统（触控）","中央纯水系统","纯水输送系统","纯水拓展组件"],
             ["垂直流型净化工作台","水平流型净化工作台","Ⅱ级A2型生物安全柜","Ⅱ级型B2型生物安全柜"],
             ["手提式压力蒸汽灭菌锅","立式压力灭菌锅","卧式压力蒸汽灭菌锅高压灭菌锅除臭剂"],
@@ -348,7 +351,8 @@ export default {
         flag:cls1,
         second_type:cls2,
         third_type:cls3,
-        page:1
+        page:1,
+        first:true
       }
       this.$router.push({ path: 'search', query})     
     },
@@ -378,12 +382,11 @@ export default {
 }
 #header {
   position: relative;
-  /* overflow: hidden; */
 }
 /* 头部固定nav条 */
 .nav {
   font-size: 13px;
-  overflow: hidden;
+  overflow: hidden; 
   box-sizing: border-box;
   position: fixed;
   width: 100%;
@@ -394,6 +397,12 @@ export default {
   justify-content: space-between;
   background-color: #f7f7f7;
   border-bottom: 1px #ddd solid;
+}
+#user{
+  
+}
+#user-menu{
+ 
 }
 .userBox>span:hover{
   color: red;
@@ -417,7 +426,7 @@ export default {
 /* logo行 */
 .tabBox {
   padding: 0 10%;
-  height: 135px;
+  height: 115px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -429,7 +438,8 @@ export default {
 }
 .codeBox,
 .codeBox img {
-  width: 100px;
+  width: 90px;
+  height:90px;
 }
 
 /* 搜索行 */
@@ -506,22 +516,27 @@ ul.firstShow {
 	padding: 10px;
 }
 .second-menu>li{
-	height: 18px;
+	/* height: 18px; */
   line-height: 18px;
 	text-indent: 6px;
   color: #3c3c3c;
   font-size: 12px;
 	text-align: left;
-	margin-bottom: 5px;
+	/* margin-bottom: 5px; */
+}
+.line2{
+  color: #c6c6c6;
+  margin:0 5px;
 }
 .second-t{
   color: #555;
   font-weight: 600;
   margin-right: 5px;
+  margin-bottom: 5px;
 }
 .third-t{
   color: #333;
-  margin-right:10px;
+  margin-right:5px;
   display: block;
 }
 .second-t:hover,.third-t:hover{
@@ -536,16 +551,17 @@ ul.firstShow {
 /* 搜索icon */
 .search-icon-box {
   width: 110px;
-  line-height: 130px;
+  /* line-height: 130px; */
 }
 .search-icon {
   width: 35px;
+  margin-top: 30px;
 }
 .hot {
   display: flex;
   color: white;
   font-size: 14px;
-  margin-top: 5px;
+  margin-top: 10px;
 }
 .hot li {
   margin-right: 10px;

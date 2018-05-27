@@ -22,7 +22,7 @@
             </li>
             <li class="con-btn2" @click="toPage('consult')">
               <img src="../assets/imgs/buy.png" class="left-icon">
-              <div href="#">报价/订购</div>
+              <div href="#">报价 订购</div>
               <div class="free">免费</div>
             </li>
           </ul>
@@ -35,7 +35,7 @@
               <p class="notice-more">更多 ></p>
             </div>
             <li v-for="(item,index) in notices" :key="index" class="notice-item">
-              <a :href="item.url">
+              <a :href="item.url" target="_blank">
                 <img src="../assets/imgs/tri2.png" class="notice-icon">
                 {{item.name}}
               </a>
@@ -61,7 +61,7 @@
             :key="index" class="itemBox" @click="detail(curIndex+1,item.id)">
                 <img :src="item.img[0]" class="itemImg disb">
                 <p class="name">
-                  {{item.name}}
+                  {{item.main}}
                 </p>
             </li>
           </ul>
@@ -80,7 +80,7 @@
           <div v-show="secIndex == 0">
             <div class="tech">
               <div class="tech-box" v-for="(item,index) in topTechs" :key="index">
-                <img :src="item.image" class="tech-img">
+                <div><img :src="item.image" class="tech-img"></div>               
                 <div class="tech-text">
                   <p class="tech-intro">{{item.intro}}</p>
                   <a :href="item.url" class="sec-a tech-a">了解更多</a>
@@ -114,7 +114,7 @@
           <div v-show="secIndex == 2">
             <div class="food">
               <div class="food-box" v-for="(item,index) in foods" :key="index">
-                <img :src="item.image" class="food-img">
+                <div><img :src="item.image" class="food-img"></div>
                 <div class="food-t">
                   <p class="food-title">{{item.title}}</p>
                   <p class="food-text">{{item.subtitle}}</p>
@@ -127,7 +127,7 @@
           <div v-show="secIndex == 3">
             <div class="newsApp food">
               <div class="food-box" v-for="(item,index) in newApps" :key="index">
-                <img :src="item.image" class="food-img">
+                <div><img :src="item.image" class="food-img"></div>
                 <div class="food-t">
                   <p class="food-title">{{item.title}}</p>
                   <p class="food-text">{{item.content}}</p>
@@ -140,11 +140,11 @@
           <div v-show="secIndex == 4" class="sec-consult">
             <div class="consult">
               <p>各种咨询：未登载商品、询价、订购、售后、技术咨询、客户登记</p>
-              <p>&nbsp;&nbsp;&nbsp;请联系：<span class="f-weight">热全港 客服中心</span></p>
+              <p>&nbsp;&nbsp;&nbsp;请联系：<span class="f-weight">热泉港 客服中心</span></p>
               <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;电话：800-988-0270</p>
-              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;邮件：hostpring@163.com</p>
-              <p>企业地址: 广州市海珠区广州大道南325号碧海商业大厦1202</p>
-              <p class="slogan">我们将 <span class="f-red">迅速 准确 认真</span> 为宗旨</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;邮件：information@yechine.com</p>
+              <p>企业地址：广州市海珠区广州大道南325号碧海商业大厦1202</p>
+              <p class="slogan">我们将 <span class="f-red">迅速 准确 认真</span> 为宗旨竭诚为您服务！</p>
               <p>营业时间：上午9点-下午6点(周六日,节假日,我公司停业日除外)</p>
             </div>
           </div>
@@ -209,8 +209,7 @@ export default {
     axios
       .get(url.food, {params: { is_index: 1 } })
       .then(response => {               
-        this.foods = response.data.data;     
-                
+        this.foods = response.data.data;                    
       })
       .catch(error => {
       console.log(error);
@@ -414,6 +413,7 @@ export default {
   height: 20px;
 }
 .con-btn1{
+  cursor:pointer;
   box-sizing: border-box;
   font-size: 18px;
   font-weight: 600;
@@ -426,6 +426,7 @@ export default {
   margin-bottom: 5px;
 }
 .con-btn2{
+  cursor:pointer;
   box-sizing: border-box;
   font-size: 16px;
   font-weight: 600;
@@ -512,7 +513,7 @@ export default {
   border-top: 0;
 }
 .sec-consult{
-  padding: 50px 100px;
+  padding: 45px 80px;
   height: 100%;
   box-sizing: border-box;
 }
@@ -530,7 +531,7 @@ export default {
   margin-bottom: 20px;
 }
 .f-weight{
-  font-size: 16px;
+  font-size:18px;
   font-weight: 600;
 }
 .f-red{
@@ -538,6 +539,7 @@ export default {
   color: red; 
 }
 .slogan{
+  font-size:18px;
   margin-top: 30px;
 }
 /* 尖端科技 */
@@ -565,10 +567,11 @@ export default {
   position: relative;
   font-size: 15px;
   margin-left: 40px;
+  max-width:290px;
 }
 .tech-img{
-  width: 150px;
-  height: 150px;
+  width: 180px;
+  height: 130px;
 }
 /* 网络研讨会 */
 .web{
@@ -589,6 +592,7 @@ export default {
 }
 .web-text{
   margin: 15px 0;
+  max-width:530px;
 }
 .web-right{
   margin-left: 30px;
@@ -613,7 +617,6 @@ export default {
 }
 .food-text{
   margin: 5px 0;
+  max-width:943px;
 }
-
-
 </style>

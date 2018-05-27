@@ -4,7 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import htmlToPdf from '@/components/utils/htmlToPdf' 
-import "promise-polyfill"
+import "babel-polyfill";
 
 Vue.use(htmlToPdf) 
 Vue.config.productionTip = false

@@ -74,6 +74,7 @@ export default {
   color: red; 
 }
 .slogan{
+  font-size: 18px;
   margin-top: 30px;
 }
 </style>

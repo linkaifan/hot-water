@@ -46,13 +46,14 @@ export default {
         axios
           .post(url.login, upData)
           .then(function(res) {
-            if (res.data.message === 'no user matched') {
-              console.log(res);             
+            if (res.data.message === 'no user matched') {            
               alert("该用户还未注册或密码错误")
-            }else{
-              console.log(res.data.data);             
+            }else{            
               alert('登陆成功')
               sessionStorage.setItem("user", res.data.data.name); 
+              sessionStorage.setItem("cname", res.data.data.contact_name); 
+              sessionStorage.setItem("cphone", res.data.data.contact_phone); 
+              sessionStorage.setItem("email", res.data.data.email);               
               self.$router.push('/')
             }
           })

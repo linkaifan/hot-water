@@ -15,6 +15,7 @@ module.exports = {
         web:`${host}/web`,
         newApp:`${host}/newApp`,
         food:`${host}/food`,
-        goodTable:`${host}/goodTable`
+        goodTable:`${host}/goodTable`,
+        employments:`${host}/employments`
     }
 }

@@ -6,13 +6,17 @@
       <span>></span>
       <span v-show="NameOrType == 'name'">搜索关键词 <span class="search-content">
 				{{byName.name}}</span> 的结果：</span>
-      <span v-show="NameOrType == 'type'">搜索 <span class="search-content">
-				{{byType.third_type||byType.second_type}}</span> 结果：</span>
+      <span v-show="NameOrType == 'type'">
+				<span>{{byType.second_type}} </span>	
+				<span v-show="byType.third_type">
+					&nbsp;&nbsp;&nbsp;> &nbsp;&nbsp;&nbsp;
+				</span>			
+				<span v-show="byType.third_type" class="t-red">
+					{{byType.third_type}} 
+				</span>				
+			</span>
     </div>
 		<div class="result" v-if="!loading">
-			<div class="null" v-show="!items.length">
-				对不起，没有找到相关结果，请修改搜索条件！
-			</div>
 			<div class="content">
 				<div class="search-nav" v-show="items.length">
 					<div class="type">
@@ -27,6 +31,7 @@
 					<div class="brand">
 						<div class="nav-cls">品牌</div>
 						<ul class="nav-ul">
+							<li class="nav-name" @click="byNameAndBrandOrType('all','')">全部</li>
 							<li class="nav-name" v-for="(brand,index) in brands" :key="index"
 							@click="byNameAndBrandOrType(brand,'')">
 								{{brand}}
@@ -36,6 +41,7 @@
 					<div class="brand shape" v-show="NameOrType == 'type' && shapes.length">
 						<div class="nav-cls">形状</div>
 						<ul class="nav-ul">
+							<li class="nav-name" @click="byNameAndBrandOrType('','','all')">全部</li>
 							<li class="nav-name" v-for="(shape,index) in shapes" :key="index"
 							@click="byNameAndBrandOrType('','',shape)">
 								{{shape}}
@@ -45,6 +51,7 @@
 					<div class="brand capacity" v-show="NameOrType == 'type' && capacitys.length">
 						<div class="nav-cls">容量</div>
 						<ul class="nav-ul">
+							<li class="nav-name" @click="byNameAndBrandOrType('','','','all')">全部</li>
 							<li class="nav-name" v-for="(capacity,index) in capacitys" :key="index"
 							@click="byNameAndBrandOrType('','','',capacity)">
 								{{capacity}}
@@ -54,6 +61,7 @@
 					<div class="brand category" v-show="NameOrType == 'type' && categorys.length">
 						<div class="nav-cls">类别</div>
 						<ul class="nav-ul">
+							<li class="nav-name" @click="byNameAndBrandOrType('','','','','all')">全部</li>
 							<li class="nav-name" v-for="(category,index) in categorys" :key="index"
 							@click="byNameAndBrandOrType('','','','',category)">
 								{{category}}
@@ -61,15 +69,18 @@
 						</ul>
 					</div>
 				</div>
-				<div class="items-box">
+				<div class="null" v-show="!items.length">
+					对不起，没有找到相关结果，请修改搜索条件！
+				</div>
+				<div class="items-box" v-show="items.length">
 					<div class="item" v-for="(item,index) in items" :key="index"
 					@click="detail(item.first_type,item.id)">
 						<img :src="isHaveImg(item.img)" class="item-img">
-						<p class="item-name">{{item.name}}</p>
-						<p class="price">￥ <span>{{item.price || 6}} </span> 起</p>
+						<p class="item-name">{{item.main}}</p>
+						<!-- <p class="price">￥ <span>{{item.price || 6}} </span> 起</p> -->
 					</div>
 				</div>
-				<div class="btn-box">
+				<div class="btn-box" v-show="items.length > 30">
 					<ul class="btn-ul">
 						<li class="btn-n" @click="toPage(1)" v-show="curPage != 1">
 							 &lt;&lt;
@@ -178,6 +189,10 @@ export default {
 		},
 		byNameAndBrandOrType(brand,type,shape,capacity,category){
 			if (this.NameOrType == 'name') {
+				if (brand === 'all') {
+					this.byName.brand = null
+					brand = null
+				}
 				this.$router.push({ path: 'search',query:{
 					name:this.byName.name,
 					page:1,
@@ -185,15 +200,29 @@ export default {
 					type:type || this.byName.type,
 				}}) 				
 			}else if (this.NameOrType == 'type') {
+				//判断是否点击全部。
+				if (brand === 'all') {
+					this.byType.brand = null
+					brand = null														
+				}else if (shape === 'all') {
+					this.byType.shape = null
+					shape = null					
+				}else if (capacity === 'all') {
+					this.byType.capacity = null
+					capacity = null
+				}else if (category === 'all') {
+					this.byType.category = null
+					category = null					
+				}
 				this.$router.push({ path: 'search',query:{
 					flag:this.byType.flag,
 					page:1,
-					shape:shape || this.byType.shape,
-					brand:brand || this.byType.brand,
-					capacity:capacity || this.byType.capacity,
-					category:category || this.byType.category,
+					shape:shape || this.byType.shape || '',
+					brand:brand || this.byType.brand || '',
+					capacity:capacity || this.byType.capacity || '',
+					category:category || this.byType.category || '',
 					third_type:type || this.byType.third_type,
-					second_type:this.byType.second_type
+					second_type:this.byType.second_type 
 				}}) 
 			}else{
 				alert('错误操作')
@@ -203,8 +232,7 @@ export default {
 		searchByType(){
 			let query = this.$route.query
 			this.byType = query
-			this.curPage = this.byType.page	
-				
+			this.curPage = this.byType.page					
 			axios
         .get(url.classify, { params: query })
         .then(response => {					
@@ -213,13 +241,13 @@ export default {
 					this.items = data.data	
 					this.maxPage = data.total					
 					this.loading = false
-					
-
-					this.types = data.third_type 
-					this.brands = data.brand
-					this.categorys = data.category
-					this.shapes = data.shape
-					this.capacitys = data.capacity
+					if (this.byType.first) {
+						this.types = data.third_type 
+						this.brands = data.brand
+						this.categorys = data.category
+						this.shapes = data.shape
+						this.capacitys = data.capacity	
+					}
         })
         .catch(error => {
 					this.items = []
@@ -274,6 +302,9 @@ export default {
 	font-weight: 600;
 	font-size: 18px;
 }
+.t-red{
+	color: #e70012;
+}
 .content{
 	padding: 0 10%;
 }
@@ -290,7 +321,7 @@ export default {
 	text-align: center;
 	font-size: 14px;
 	margin-right: 20px;	
-	margin-bottom: 25px;
+	margin-bottom: 30px;
 }
 .item:hover{
 	color: #e70012;
@@ -348,6 +379,9 @@ export default {
 }
 .nav-name:hover{
 	text-decoration: underline;
+}
+.null{
+	margin-bottom: 50px;
 }
 .btn-ul{
 	display: flex;
