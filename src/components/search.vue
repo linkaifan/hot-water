@@ -2,7 +2,7 @@
 	<div id="search">
 		<myhead></myhead>
 		<div class="bar">
-      <router-link to="/">Hot spring首页</router-link>
+      <router-link to="/">Yechine首页</router-link>
       <span>></span>
       <span v-show="NameOrType == 'name'">搜索关键词 <span class="search-content">
 				{{byName.name}}</span> 的结果：</span>
@@ -80,7 +80,7 @@
 						<!-- <p class="price">￥ <span>{{item.price || 6}} </span> 起</p> -->
 					</div>
 				</div>
-				<div class="btn-box" v-show="items.length > 30">
+				<div class="btn-box" v-show="maxPage > 1">
 					<ul class="btn-ul">
 						<li class="btn-n" @click="toPage(1)" v-show="curPage != 1">
 							 &lt;&lt;

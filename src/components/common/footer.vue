@@ -5,11 +5,11 @@
           <div class="imgBox">
               <img src="../../assets/imgs/fw.jpg" alt="">
           </div>
-          <p class="first-p">版权所有@2015-2018 asonline.cn 沪ICP备15005493号-1</p>
-          <p class="foot-p"><a href="#">泸公网安备 311500505号</a></p>
-          <div class="policeImgBox">
+          <p class="first-p">版权所有@2018-2021 yechine.com 粤ICP备18062041号-1</p>
+          <p class="foot-p"><a href="#">粤ICP备18062041号-1</a></p>
+<!--           <div class="policeImgBox">
               <img src="../../assets/imgs/bottom.jpg" alt="">
-          </div>
+          </div> -->
       </div>
   </footer>
 </template>

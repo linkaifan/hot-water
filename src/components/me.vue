@@ -2,7 +2,7 @@
     <div id="me">
       <myhead></myhead>
       <div class="bar">
-	  		<router-link to="/">Hot spring首页</router-link>
+	  		<router-link to="/">Yechine首页</router-link>
       		<span>></span>
       		<router-link to="/me">基础信息</router-link>
 	    </div>

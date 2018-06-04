@@ -2,7 +2,7 @@
   <div id="jobs">
     <myhead></myhead>
     <div class="bar">
-      <router-link to="/">Hot spring首页</router-link>
+      <router-link to="/">Yechine首页</router-link>
       <span>></span>
       <router-link to="/jobs">人才招聘</router-link>
 	  </div>

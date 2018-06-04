@@ -58,7 +58,7 @@ export default {
 .box {
   position: fixed;
   right: 0;
-  top: 100px;
+  top: 220px;
   z-index: 1500;
   display: flex;
   align-items: center;

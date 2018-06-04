@@ -2,7 +2,7 @@
   <div id="index">
       <myhead isHome='true'></myhead>
       <div class="content">
-        <img class="con-middle" src="../assets/imgs/con-middle.png" alt="热泉">
+        <img class="con-middle" src="../assets/imgs/con-middle.jpg" alt="热泉">
         <div class="con-right">
           <ul class="ul-btn">
             <li class="con-btn1" @click="toPage('apply')">
@@ -141,7 +141,7 @@
             <div class="consult">
               <p>各种咨询：未登载商品、询价、订购、售后、技术咨询、客户登记</p>
               <p>&nbsp;&nbsp;&nbsp;请联系：<span class="f-weight">热泉港 客服中心</span></p>
-              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;电话：800-988-0270</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;电话：020-310-41987</p>
               <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;邮件：information@yechine.com</p>
               <p>企业地址：广州市海珠区广州大道南325号碧海商业大厦1202</p>
               <p class="slogan">我们将 <span class="f-red">迅速 准确 认真</span> 为宗旨竭诚为您服务！</p>

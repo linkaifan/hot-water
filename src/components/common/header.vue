@@ -3,7 +3,7 @@
     <nav class="nav">
       <ul class="left-ul">
 				<li>
-					<img class="icon" src="../../assets/imgs/phone.png" >
+					<img class="icon" src="../../assets/imgs/apply.png" >
 					<router-link to="/jobs">招贤纳士</router-link>	
 					<span class="line">|</span>
 				</li>
@@ -35,7 +35,7 @@
 					<span class="line">|</span>
 				</li>
 				<li>
-					<img src="../../assets/imgs/sm-logo.png" class="icon">
+					<img src="../../assets/imgs/sm-logo2.png" class="icon">
           <router-link to="/">Yechine官网</router-link>						
 					<span class="line">|</span>		
 				</li>
@@ -51,7 +51,7 @@
 				<img src="../../assets/imgs/LOGO.png" >
 			</div>
 			<div class="codeBox">
-				<img src="../../assets/imgs/code.jpg">
+				<img src="../../assets/imgs/code.png">
 			</div>
 		</div>
 		<div class="searchBox">
@@ -265,7 +265,7 @@ export default {
           third:[
             ["HPSE高效快速溶剂萃取系统","全自动均质系统","全自动固相萃取系统",
             "手动固相萃取","全自动浓缩产品","凝胶净化系统"],
-            ["微博消解萃取系统","超级微博化学平台","微波灰化","微波合成",
+            ["微波消解萃取系统","超级微波化学平台","微波灰化","微波合成",
             "激光剥蚀固体进样系统","ICP/ICP-MS专业雾化系统","ICP/ICP-MS专业自动进样器"],
             ["紫外/可见分光光度计","高效液相色谱系统","全自动测汞仪","lsotopx同位素质谱仪"],
             ["循环水冷冷却器","微控数显电热板","微波消解赶酸器","光波加热仪",
@@ -397,12 +397,7 @@ export default {
   justify-content: space-between;
   background-color: #f7f7f7;
   border-bottom: 1px #ddd solid;
-}
-#user{
-  
-}
-#user-menu{
- 
+  z-index: 1500;
 }
 .userBox>span:hover{
   color: red;
@@ -434,12 +429,10 @@ export default {
 .logoBox,
 .logoBox img {
   width: 500px;
-  height: 80px;
 }
 .codeBox,
 .codeBox img {
-  width: 90px;
-  height:90px;
+  width: 88px;
 }
 
 /* 搜索行 */
@@ -490,6 +483,7 @@ ul.firstShow {
 	padding: 10px 0;
 	box-sizing: border-box;
 	font-size: 14px;
+  height: 345px;
 }
 .first-menu > li{
 	padding-left: 15px;
@@ -500,10 +494,11 @@ ul.firstShow {
 .first-menu > li:hover {
   background-color: #cd0010;
 	color: white;
+  cursor: pointer;
 }
 .first-menu:hover .second-menu {
   display: block;
-}
+} 
 .second-menu {
   display: none;
   position: absolute;
@@ -541,6 +536,7 @@ ul.firstShow {
 }
 .second-t:hover,.third-t:hover{
   text-decoration:underline;
+  cursor: pointer;
 }
 .second-content{
   display: flex;
@@ -551,11 +547,10 @@ ul.firstShow {
 /* 搜索icon */
 .search-icon-box {
   width: 110px;
-  /* line-height: 130px; */
+  line-height: 130px;
 }
 .search-icon {
   width: 35px;
-  margin-top: 30px;
 }
 .hot {
   display: flex;

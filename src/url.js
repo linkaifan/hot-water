@@ -1,4 +1,4 @@
-let host = 'http://111.230.29.91:8002'
+let host = 'https://api.yechine.com'
 module.exports = {
     url:{
         login:`${host}/login`,
