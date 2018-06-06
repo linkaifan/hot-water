@@ -46,7 +46,7 @@
           </ul>
         </div>
       </div>
-      <div class="newRecommend">
+      <div class="newRecommend w1200">
         <p>新品推荐</p>
         <div class="box">
           <ul class="tab">
@@ -67,7 +67,7 @@
           </ul>
         </div>
       </div>
-      <div class="sectionTab">
+      <div class="sectionTab w1200">
         <ul class="sec-ul">
           <li v-for="(item,index) in sections"
           :key="index" :class=" index === secIndex ? 'sec-active' :'' "
@@ -326,31 +326,34 @@ export default {
 .disb {
   display: block;
 }
+.w1200{
+  width: 80vw;
+  margin: 0 auto;
+  min-width: 1200px;
+}
 /* 公告和主图 */
 .content {
   display: flex;
-  padding: 0 10%;
   height: 340px;
-  margin: 5px;
+  margin:5px auto;
+  width: 80vw;
+  min-width: 1200px;
 }
 .con-middle {
-  /* min-width: 700px;  */
-  display: inline-block;
-  margin-left: 232px;
+  margin-left: 237px;
   border: 1px #d5d5d5 solid;
+  flex-grow: 1;
 }
 .con-right {
-  display: inline-block;
   min-width: 240px; 
   margin-left: 10px;
   padding: 5px 10px;
   border: 1px #d5d5d5 solid;
-  flex-grow: 1;
+  flex-grow: 2;
 }
 /* 新品推荐 */
 .newRecommend {
-  margin: 20px 0;
-  padding: 0 10%;
+  margin: 20px auto;
   font-size: 12px;
 }
 .newRecommend > p {
@@ -486,7 +489,6 @@ export default {
 }
 /* 联系我们 */
 .sectionTab{
-  padding: 0 10%;
   margin-bottom: 60px;
 }
 .sec-ul{

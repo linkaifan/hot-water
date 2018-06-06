@@ -1,52 +1,56 @@
 <template>
   <div id="header">
     <nav class="nav">
-      <ul class="left-ul">
-				<li>
-					<img class="icon" src="../../assets/imgs/apply.png" >
-					<router-link to="/jobs">招贤纳士</router-link>	
-					<span class="line">|</span>
-				</li>
-				<li>
-					<img class="icon" src="../../assets/imgs/phone2.png" >
-					020-310-41987
-					<span class="line">|</span>
-				</li>
-				<li>
-					<img class="icon" src="../../assets/imgs/email.png" >
-					information@yechine.com
-					<span class="line">|</span>
-				</li>
-			</ul>
-			<div class="loginBox" v-show="!user">
-				欢迎来到 热泉港， 请
-				<router-link to="login">[登录]</router-link>
-				<router-link to="register">[注册]</router-link>
-			</div>
-      <div class="userBox" v-show="user">
-				尊敬的 {{user}} , 欢迎来到 热泉港 
-        <span @click="cancelUser">[注销]</span>
-			</div>
-			<ul class="right-ul">
-				<li id="user" v-show="user">
-          <img src="../../assets/imgs/me.png" class="icon">
-					<router-link to="/me">基础信息</router-link>						
-					<!-- <img src="../../assets/imgs/tri.png" class="icon"> -->
-					<span class="line">|</span>
-				</li>
-				<li>
-					<img src="../../assets/imgs/sm-logo2.png" class="icon">
-          <router-link to="/">Yechine官网</router-link>						
-					<span class="line">|</span>		
-				</li>
-				<li>
-					<img src="../../assets/imgs/flag.png" class="icon">
-					<router-link to="/about">【公司简介】</router-link>			
-				</li>
-			</ul>
+      <div class="nav-1200">
+        <ul class="left-ul">
+          <li>
+            <img class="icon" src="../../assets/imgs/apply.png" >
+            <router-link to="/jobs">招贤纳士</router-link>	
+            <span class="line">|</span>
+          </li>
+          <li>
+            <img class="icon" src="../../assets/imgs/phone2.png" >
+            020-310-41987
+            <span class="line">|</span>
+          </li>
+          <li>
+            <img class="icon" src="../../assets/imgs/email.png" >
+            information@yechine.com
+            <span class="line">|</span>
+          </li>
+        </ul>
+        <div class="loginBox" v-show="!user">
+          欢迎来到 热泉港， 请
+          <router-link to="login">[登录]</router-link>
+          <router-link to="register">[注册]</router-link>
+        </div>
+        <div class="userBox" v-show="user">
+          尊敬的 {{user}} , 欢迎来到 热泉港 
+          <span @click="cancelUser">[注销]</span>
+        </div>
+        <ul class="right-ul">
+          <li id="user" v-show="user">
+            <img src="../../assets/imgs/me.png" class="icon">
+            <router-link to="/me">基础信息</router-link>						
+            <!-- <img src="../../assets/imgs/tri.png" class="icon"> -->
+            <span class="line">|</span>
+          </li>
+          <li>
+            <img src="../../assets/imgs/sm-logo2.png" class="icon">
+            <router-link to="/">Yechine官网</router-link>						
+            <span class="line">|</span>		
+          </li>
+          <li>
+            <img src="../../assets/imgs/flag.png" class="icon">
+            <router-link to="/about" >
+              公司简介 
+            </router-link>			
+          </li>
+        </ul>
+      </div>
     </nav>
 		<div class="h30"></div>
-		<div class="tabBox">
+		<div class="tabBox w1200">
 			<div class="logoBox" @click="toPage('/')">
 				<img src="../../assets/imgs/LOGO.png" >
 			</div>
@@ -54,7 +58,7 @@
 				<img src="../../assets/imgs/code.png">
 			</div>
 		</div>
-		<div class="searchBox">
+		<div class="searchBox w1200">
 			<div class="menuBox" >
 				<p class="menu-p">
 					全部产品分类 
@@ -65,6 +69,7 @@
 						<li v-for="(item,index) in items" :key="index"
 						@mouseenter="changeDesItem(index)" class="firstLi">
 							<span>{{item.cls}}</span>
+							<span class="right-tri"></span>
 						</li>
 						<ul class="second-menu">
 							<li v-for="(item2,index2) in desItem" :key="index2" class="second-content">
@@ -383,6 +388,14 @@ export default {
 #header {
   position: relative;
 }
+.w1200{
+  width: 80vw;
+  margin: 0 auto;
+  min-width: 1200px;
+}
+.t-intro{
+  margin-right: 0;
+}
 /* 头部固定nav条 */
 .nav {
   font-size: 13px;
@@ -392,12 +405,16 @@ export default {
   width: 100%;
   height: 30px;
   line-height: 30px;
-  padding: 0 10%;
-  display: flex;
-  justify-content: space-between;
   background-color: #f7f7f7;
   border-bottom: 1px #ddd solid;
   z-index: 1500;
+}
+.nav-1200{
+  width: 80vw;
+  margin: 0 auto;
+  min-width: 1200px;  
+  display: flex;
+  justify-content: space-between;
 }
 .userBox>span:hover{
   color: red;
@@ -420,7 +437,6 @@ export default {
 
 /* logo行 */
 .tabBox {
-  padding: 0 10%;
   height: 115px;
   display: flex;
   align-items: center;
@@ -438,7 +454,6 @@ export default {
 /* 搜索行 */
 .searchBox {
   display: flex;
-  padding: 0 10%;
   background-color: #e70012;
   height: 130px;
 }
@@ -485,20 +500,33 @@ ul.firstShow {
 	font-size: 14px;
   height: 345px;
 }
-.first-menu > li{
+.firstLi{
 	padding-left: 15px;
+  padding-right: 15px;
 	text-align: left; 
 	height: 30px;
 	line-height: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-.first-menu > li:hover {
+.right-tri{
+  width: 7px;
+  height: 12px;
+  background: url("../../assets/imgs/right-tri.png") no-repeat;
+}
+.firstLi:hover {
   background-color: #cd0010;
 	color: white;
   cursor: pointer;
 }
+.firstLi:hover .right-tri{
+  background: url("../../assets/imgs/right-tri2.png") no-repeat;
+}
 .first-menu:hover .second-menu {
   display: block;
 } 
+
 .second-menu {
   display: none;
   position: absolute;
