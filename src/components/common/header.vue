@@ -41,7 +41,7 @@
 				</li>
 				<li>
 					<img src="../../assets/imgs/flag.png" class="icon">
-					<router-link to="/about">【关于我们】</router-link>			
+					<router-link to="/about">【公司简介】</router-link>			
 				</li>
 			</ul>
     </nav>

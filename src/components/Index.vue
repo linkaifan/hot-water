@@ -2,7 +2,7 @@
   <div id="index">
       <myhead isHome='true'></myhead>
       <div class="content">
-        <img class="con-middle" src="../assets/imgs/con-middle.jpg" alt="热泉">
+        <img class="con-middle" src="../assets/imgs/con-middle.png" alt="热泉">
         <div class="con-right">
           <ul class="ul-btn">
             <li class="con-btn1" @click="toPage('apply')">
@@ -334,17 +334,18 @@ export default {
   margin: 5px;
 }
 .con-middle {
-  min-width: 700px;
+  /* min-width: 700px;  */
+  display: inline-block;
   margin-left: 232px;
   border: 1px #d5d5d5 solid;
-  flex-grow: 1;
 }
 .con-right {
-  flex-grow: 2;
+  display: inline-block;
   min-width: 240px; 
   margin-left: 10px;
   padding: 5px 10px;
   border: 1px #d5d5d5 solid;
+  flex-grow: 1;
 }
 /* 新品推荐 */
 .newRecommend {
