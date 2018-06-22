@@ -32,7 +32,7 @@
                 <img src="../assets/imgs/notice.png" class="icon-notice">
                 <span> 热泉港 公告</span>
               </div>
-              <p class="notice-more">更多 ></p>
+              <router-link to="/notices" class="notice-more">更多 ></router-link>
             </div>
             <li v-for="(item,index) in notices" :key="index" class="notice-item">
               <a :href="item.url" target="_blank">
@@ -471,7 +471,6 @@ export default {
   align-items: center;
   font-size: 14px;
   margin-top: 2px;
-  margin-bottom: 3px;
 }
 .notice-icon{
   width: 5px;

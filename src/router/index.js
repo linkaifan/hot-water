@@ -11,6 +11,7 @@ import Detail from "@/components/detail";
 import About from "@/components/about";
 import Me from "@/components/me";
 import Jobs from "@/components/jobs";
+import Notices from "@/components/notices";
 
 Vue.use(Router)
 
@@ -71,6 +72,10 @@ export default new Router({
       name: 'Jobs',
       component: Jobs
     },
-
+    {
+      path: '/notices',
+      name: 'Notices',
+      component: Notices
+    },
   ]
 })
