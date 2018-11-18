@@ -118,7 +118,7 @@
                 <div class="food-t">
                   <p class="food-title">{{item.title}}</p>
                   <p class="food-text">{{item.subtitle}}</p>
-                  <!-- <a href="#" class="sec-a tech-a">了解更多</a> -->
+                  <router-link :to="'/foods/foods/'+index" class="sec-a tech-a">了解更多</router-link>
                 </div>
               </div>
             </div>
@@ -131,7 +131,7 @@
                 <div class="food-t">
                   <p class="food-title">{{item.title}}</p>
                   <p class="food-text">{{item.content}}</p>
-                  <!-- <a href="#" class="sec-a tech-a">了解更多</a> -->
+                  <router-link :to="'/foods/newsApp/'+index" class="sec-a tech-a">了解更多</router-link>
                 </div>
               </div>
             </div>
@@ -141,8 +141,8 @@
             <div class="consult">
               <p>各种咨询：未登载商品、询价、订购、售后、技术咨询、客户登记</p>
               <p>&nbsp;&nbsp;&nbsp;请联系：<span class="f-weight">热泉港 客服中心</span></p>
-              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;电话：020-310-41987</p>
-              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;邮件：information@yechine.com</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;电话：020-31041987 18933991306</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;邮件：chn_mahone @163.com</p>
               <p>企业地址：广州市海珠区广州大道南325号碧海商业大厦1202</p>
               <p class="slogan">我们将 <span class="f-red">迅速 准确 认真</span> 为宗旨竭诚为您服务！</p>
               <p>营业时间：上午9点-下午6点(周六日,节假日,我公司停业日除外)</p>
@@ -215,16 +215,16 @@ export default {
       console.log(error);
       alert("网络错误，不能获取食药咨询数据");
       }); 
-      //最新应用
-      axios
-        .get(url.newApp, {params: { is_index: 1 } })
-        .then(response => {               
-          this.newApps = response.data.data;            
-        })
-        .catch(error => {
-        console.log(error);
-        alert("网络错误，不能获取最新应用数据");
-        });
+    //最新应用
+    axios
+      .get(url.newApp, {params: { is_index: 1 } })
+      .then(response => {               
+        this.newApps = response.data.data;            
+      })
+      .catch(error => {
+      console.log(error);
+      alert("网络错误，不能获取最新应用数据");
+      });
   },
   data() {
     return {
@@ -250,11 +250,23 @@ export default {
           items: []
         },
         {
-          cls: "理化前处理/分析仪器",
+          cls: "理化前处理",
           items: []
         },
         {
-          cls: "微生物检测",
+          cls: "理化分析",
+          items: []
+        },
+        {
+          cls: "环境检测与分析",
+          items: []
+        },
+        {
+          cls: "工业微生物检测",
+          items: []
+        },
+        {
+          cls: "临床诊断",
           items: []
         },
         {
@@ -618,6 +630,10 @@ export default {
   position: relative;
 }
 .food-text{
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
   margin: 5px 0;
   max-width:943px;
 }

@@ -47,12 +47,16 @@
             <li v-show="table[0].col2">{{table[0].col2}}</li>
             <li v-show="table[0].col3">{{table[0].col3}}</li>
             <li v-show="table[0].col4">{{table[0].col4}}</li>
+            <li v-show="table[0].col5">{{table[0].col5}}</li>
+            <li v-show="table[0].col6">{{table[0].col6}}</li>
 					</ul>
           <ul class="info-value" v-for="(item,index) in table" :key="index">
             <li v-show="item.value1">{{item.value1}}</li>
             <li v-show="item.value2">{{item.value2}}</li>
             <li v-show="item.value3">{{item.value3}}</li>
             <li v-show="item.value4">{{item.value4}}</li>
+            <li v-show="item.value5">{{item.value5}}</li>
+            <li v-show="item.value6">{{item.value6}}</li>
           </ul>
 				</div>
       </div>			
@@ -201,7 +205,9 @@ ul.weight > li {
 }
 .info{
   border: 1px #e0e0e0 solid; 
-  margin-top: 50px;
+  /* margin-top: 50px; */
+  display: inline-block;
+  margin: 50px auto;
 }
 .info-value{
   border-top: 1px #e0e0e0 solid;
@@ -210,8 +216,10 @@ ul.weight > li {
   display: flex;
 }
 .info-value>li,.info-key>li{
-  width: 24%;
   padding: 10px;
+  /* width: 15%; */
+  /* flex-grow: 1; */
+  min-width: 12vw;
   text-align: center;
 }
 </style>

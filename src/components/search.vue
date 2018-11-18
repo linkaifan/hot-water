@@ -146,7 +146,8 @@ export default {
       axios
         .get(url.searchByName, { params: query })
         .then(response => {										
-					let data = response.data.data;														
+					let data = response.data.data;	
+					console.log(data);													
 					this.items = data.data
 					this.types = data.type
 					this.brands = data.brand
@@ -232,11 +233,14 @@ export default {
 		searchByType(){
 			let query = this.$route.query
 			this.byType = query
-			this.curPage = this.byType.page					
+			this.curPage = this.byType.page	
+			console.log(query);
+							
 			axios
         .get(url.classify, { params: query })
-        .then(response => {					
+        .then(response => {									
 					let data = response.data.data;	
+					console.log(data);
 									
 					this.items = data.data	
 					this.maxPage = data.total					

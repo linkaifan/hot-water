@@ -12,6 +12,7 @@ import About from "@/components/about";
 import Me from "@/components/me";
 import Jobs from "@/components/jobs";
 import Notices from "@/components/notices";
+import Foods from "@/components/foods";
 
 Vue.use(Router)
 
@@ -76,6 +77,11 @@ export default new Router({
       path: '/notices',
       name: 'Notices',
       component: Notices
+    },
+    {
+      path: '/foods/:value/:i',
+      name: 'Foods',
+      component: Foods
     },
   ]
 })
